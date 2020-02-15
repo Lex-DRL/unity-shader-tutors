@@ -26,7 +26,8 @@
 				float3 vertex : POSITION; // it's actually a ball's center position, not the actual vertex pos
 				half3 normal : NORMAL; // actually, it's an offset from center allowing to restore the vertex pos
 				fixed4 color : COLOR; // just some random color to make balls different
-				float2 texcoord0 : TEXCOORD0; // just two randoms: for phase and speed variance
+				float2 texcoord0 : TEXCOORD0; // actual UVs, for texturing
+				float2 texcoord1 : TEXCOORD1; // just two randoms: for phase and speed variance
 			};
 
 			struct v2f {
@@ -65,10 +66,10 @@
 				float diam = _Radius * 2.0;
 				float offsetY;
 				{ // calc main ball movement (up-down, based on cos)
-					float speed = max(_MinSpeed + _RndSpeed * v.texcoord0.y, 0.001);
+					float speed = max(_MinSpeed + _RndSpeed * v.texcoord1.y, 0.001);
 					float cycleLen = 1.0 / speed;
 					float progress = (_Time.y % cycleLen) * speed; // cycles in [0 to 1] range
-					progress += v.texcoord0.x; // randomize phase offset for each ball.
+					progress += v.texcoord1.x; // randomize phase offset for each ball.
 					// progress can go beyond 1 now, but the random value
 					// should also be in [0, 1] range, so in total progress is in [0, 2] anyway,
 					// which precision is still enough for smooth movement
