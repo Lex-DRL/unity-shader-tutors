@@ -17,6 +17,5 @@
 Всё содержимое этого репозитория, если явно не указано обратного, распространяется по лицензии
 [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International](http://creativecommons.org/licenses/by-nc-sa/4.0/).
 
-© 2020 Лекс Дарлог ([Lex Darlog](https://github.com/Lex-DRL))
-
 ![Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International license](https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png)
+© 2020 Лекс Дарлог ([Lex Darlog](https://github.com/Lex-DRL))
