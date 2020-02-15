@@ -12,3 +12,9 @@
 Для удобства скачивания ветка по умолчанию - `init-preLFS`, чтоб в графических клиентах типа SmartGit можно было первоначально подцепиться к гитхабу, склонировав тот коммит, в котором ещё не было ни одного LFS-файла. Затем - установить у себя в репозитории LFS прямо из GUI (в SmartGit: выбрать репо -> меню Local -> LFS -> Install). А потом переключиться на `master` - чтоб уже, собственно, выкачать сам репозиторий.
 
 После этого ветка `init-preLFS` уже не нужна - в локальном репо её можно спокойно удалить
+
+## Лицензия
+Всё содержимое этого репозитория, если явно не указано обратного, распространяется по лицензии
+[Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International](http://creativecommons.org/licenses/by-nc-sa/4.0/).
+
+![Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International license](https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png)
