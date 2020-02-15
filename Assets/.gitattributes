@@ -1,0 +1,7 @@
+﻿# gitattributes placed in the project's Assets folder
+
+*.meta text
+
+# *.gizmo in Assets dir most likely is no longer a nuke file, but a Unity's icon:
+*.[Gg][Ii][Zz][Mm][Oo] filter=lfs diff=lfs merge=lfs -text
+*[Tt]ext*[Mm]esh*/**/*SDF*.asset filter=lfs diff=lfs merge=lfs -text
