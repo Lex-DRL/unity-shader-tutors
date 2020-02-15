@@ -158,6 +158,11 @@
 *.[Oo][Bb][Jj] filter=lfs diff=lfs merge=lfs
 # substance:
 *.[Ss][Bb][Ss][Aa][Rr] filter=lfs diff=lfs merge=lfs
+# Houdini:
+*.[Oo][Tt][Ll] filter=lfs diff=lfs merge=lfs
+*.[Hh][Dd][Aa] filter=lfs diff=lfs merge=lfs
+*.[Hh][Ii][Pp] filter=lfs diff=lfs merge=lfs
+
 
 
 # -----------------------------------------------
