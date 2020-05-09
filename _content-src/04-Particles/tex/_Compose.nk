@@ -1,0 +1,205 @@
+#! C:/1-CG/Nuke/9.0v6/nuke-9.0.6.dll -nx
+version 9.0 v6
+define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="0" y="0" w="2560" h="1400" screen="0">
+        <splitter orientation="1">
+            <split size="40"/>
+            <dock id="" hideTitles="1" activePageId="Toolbar.1">
+                <page id="Toolbar.1"/>
+            </dock>
+            <split size="1881" stretch="1"/>
+            <splitter orientation="2">
+                <split size="782"/>
+                <dock id="" activePageId="Viewer.1">
+                    <page id="Viewer.1"/>
+                </dock>
+                <split size="549"/>
+                <dock id="" activePageId="DAG.1" focus="true">
+                    <page id="DAG.1"/>
+                    <page id="Curve Editor.1"/>
+                    <page id="DopeSheet.1"/>
+                </dock>
+            </splitter>
+            <split size="615"/>
+            <dock id="" activePageId="Properties.1">
+                <page id="Properties.1"/>
+            </dock>
+        </splitter>
+    </window>
+</layout>
+}
+Root {
+ inputs 0
+ name P:/0-Unity/zzz-UnityShader-Tutors/_content-src/04-Particles/tex/_Compose.nk
+ project_directory "\[file dirname \[value root.name]]"
+ last_frame 1
+ lock_range true
+ fps 30
+ format "1024 1024 0 0 1024 1024 1 square_1K"
+ proxy_type scale
+ proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
+}
+Read {
+ inputs 0
+ file ./milky_way.jpg
+ format "1024 1024 0 0 1024 1024 1 square_1K"
+ origset true
+ version 1
+ name Read1
+ xpos 1280
+ ypos 1640
+}
+set N71fe000 [stack 0]
+Blur {
+ channels rgb
+ size 40
+ name Blur1
+ xpos 1390
+ ypos 1670
+}
+Multiply {
+ channels rgb
+ value 0.5
+ name Multiply1
+ xpos 1390
+ ypos 1694
+}
+push $N71fe000
+Merge2 {
+ inputs 2
+ operation from
+ name Merge4
+ xpos 1280
+ ypos 1766
+}
+Clamp {
+ name Clamp1
+ xpos 1280
+ ypos 1784
+}
+set N71ff000 [stack 0]
+FilterErode {
+ channels rgb
+ size 256
+ filter quadratic
+ name Mins
+ xpos 1390
+ ypos 1838
+}
+set N71fec00 [stack 0]
+push $N71ff000
+Merge2 {
+ inputs 2
+ operation from
+ name Merge2
+ xpos 1280
+ ypos 1886
+}
+push $N71fec00
+push $N71ff000
+FilterErode {
+ channels rgb
+ size {{-parent.Mins.size}}
+ filter quadratic
+ name Maxes
+ xpos 1500
+ ypos 1838
+}
+Merge2 {
+ inputs 2
+ operation from
+ name Merge1
+ xpos 1500
+ ypos 1886
+}
+Merge2 {
+ inputs 2
+ operation divide
+ name Merge3
+ xpos 1280
+ ypos 1934
+}
+Dot {
+ name Dot1
+ xpos 1314
+ ypos 1986
+}
+set N724c000 [stack 0]
+Radial {
+ replace true
+ area {{bbox.x} {bbox.y} {bbox.r} {bbox.t}}
+ name Radial1
+ xpos 1390
+ ypos 1982
+}
+Gamma {
+ channels rgb
+ value 4
+ name Gamma1
+ xpos 1390
+ ypos 2006
+}
+ColorLookup {
+ lut {master {curve C k 0 s0 1 s0}
+   red {}
+   green {}
+   blue {}
+   alpha {}}
+ name ColorLookup1
+ xpos 1390
+ ypos 2030
+}
+set N724d400 [stack 0]
+Invert {
+ channels rgb
+ name Invert1
+ xpos 1390
+ ypos 2102
+}
+push $N724d400
+push $N724c000
+Merge2 {
+ inputs 2
+ operation multiply
+ name Multiply
+ xpos 1280
+ ypos 2078
+}
+Multiply {
+ inputs 1+1
+ value 3.3
+ maskChannelMask rgba.red
+ name Multiply2
+ xpos 1280
+ ypos 2120
+}
+Write {
+ file ./milky_way-corrected.exr
+ file_type exr
+ compression "Zip (16 scanlines)"
+ version 1
+ name Write1
+ xpos 1280
+ ypos 2192
+}
+Write {
+ file ./milky_way-corrected.png
+ file_type png
+ checkHashOnRead false
+ version 2
+ name Write2
+ xpos 1280
+ ypos 2264
+}
+Viewer {
+ frame 1
+ frame_range 1-1
+ fps 30
+ input_process false
+ translate {-0.2269999981 0.02800000086}
+ name Viewer1
+ note_font Verdana
+ xpos 1060
+ ypos 1815
+}
