@@ -15,8 +15,9 @@
 // Rotate around custom axis.
 // The axis vector has to be normalized.
 float3x3 rotMtxCustomAxis (float angleRad, float3 axis) {
-	float angSin = sin(angleRad);
-	float angCos = cos(angleRad);
+	float angSin, angCos;
+	sincos(angleRad, angSin, angCos);
+	
 	float invCos = 1.0 - angCos;
 	
 	// intermediate:
